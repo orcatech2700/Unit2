@@ -35,18 +35,18 @@
       }
        private class Listener implements ActionListener
       {
-          public void actionPerformed(ActionEvent e)
-         {
+    	   public void actionPerformed(ActionEvent e)
+          {
             myBuffer.setColor(BACKGROUND);
             myBuffer.fillRect(0, 0, WIDTH, HEIGHT);
             myBuffer.setColor(Color.red);
             for(int x = 17; x < WIDTH; x += 30) //vertical lines
             {
-               myBuffer.drawLine(/*     */);
+               myBuffer.drawLine(x, 0, x, 400);
             }
             for(int y = 9; y < HEIGHT; y += 28) //horizontal lines
             {
-               myBuffer.drawLine(/*     */);
+               myBuffer.drawLine(0, y, 400, y);
             }
             myBuffer.fillRect(107, 121, 180, 56);
             myBuffer.setColor(Color.black);
@@ -58,9 +58,23 @@
          	At the end of each row, the dir changes.
          	The dir controls which image to use.
          	*************************************/
+            int width = myArray[0].getImage().getWidth(null);
+            int height = myArray[0].getImage().getHeight(null);
+            
+            if(xPos <= 360 && dir == 0)
+            {
+	        	System.out.println(xPos);
+	        	xPos = xPos + 30;
+            }
+            else
+            {
+            	dir = 1;
+            }
+            
+            
             myBuffer.drawImage(myArray[dir].getImage(), xPos, yPos, null);
             
-            repaint();
-         }
-      }
-   }
+        	repaint();
+    	}
+	}
+}
